@@ -835,6 +835,9 @@ a {
   margin-right: 10px;
   font: 16px FontAwesome;
 }
+.archive-article-inner .article-meta .article-category {
+  display: none;
+}
 .archive-article-inner .article-meta .article-category:before {
   float: left;
   margin-top: 1px;
@@ -1444,6 +1447,9 @@ a {
   position: relative;
   margin-right: 10px;
   font: 16px FontAwesome;
+}
+.archive-article-inner .article-meta .article-category {
+  display: none;
 }
 .archive-article-inner .article-meta .article-category:before {
   float: left;
