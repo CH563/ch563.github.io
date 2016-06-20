@@ -658,7 +658,9 @@ pre {
   content: 'C++'; }
 
 pre {
-  color: #525252; }
+  color: #525252;
+  word-break: break-all;
+  white-space: normal; }
   pre .function .keyword,
   pre .constant {
     color: #0092db; }

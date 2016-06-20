@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://ch563.github.io/"/>
-  <updated>2016-06-20T03:40:05.108Z</updated>
+  <updated>2016-06-20T10:00:30.297Z</updated>
   <id>http://ch563.github.io/</id>
   
   <author>
@@ -16,9 +16,74 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>第日一撸:splite() | replace() | match() 方法</title>
+    <link href="http://ch563.github.io/2016/06/20/study-splite/"/>
+    <id>http://ch563.github.io/2016/06/20/study-splite/</id>
+    <published>2016-06-20T07:00:39.000Z</published>
+    <updated>2016-06-20T10:00:30.297Z</updated>
+    
+    <content type="html">&lt;p&gt;#split()&lt;/p&gt;
+&lt;p&gt;用于把一个字符串分割成字符串数组。&lt;br&gt;数组切割的常用方法。&lt;/p&gt;
+&lt;p&gt;语法&lt;/p&gt;
+&lt;figure class=&quot;highlight javascript&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;stringObject.split(separator,howmany)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;separator:必需。字符串或正则表达式，从该参数指定的地方分割 stringObject。&lt;br&gt;howmany:可选。该参数可指定返回的数组的最大长度。如果设置了该参数，返回的子串不会多于这个参数指定的数组。如果没有设置该参数，整个字符串都会被分割，不考虑它的长度。&lt;/p&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;p&gt;###定义和用法&lt;/p&gt;
+&lt;p&gt;split() 方法用于把一个字符串分割成字符串数组。&lt;br&gt;数组切割的常用方法。&lt;/p&gt;
+&lt;p&gt;语法&lt;/p&gt;
+&lt;figure class=&quot;highlight javascript&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;stringObject.split(separator,howmany)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;ul&gt;
+&lt;li&gt;separator:必需。字符串或正则表达式，从该参数指定的地方分割 stringObject。&lt;/li&gt;
+&lt;li&gt;howmany:可选。该参数可指定返回的数组的最大长度。如果设置了该参数，返回的子串不会多于这个参数指定的数组。如果没有设置该参数，整个字符串都会被分割，不考虑它的长度。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;使用方法：&lt;/p&gt;
+&lt;figure class=&quot;highlight javascript&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; str=&lt;span class=&quot;string&quot;&gt;&quot;How are you doing today?&quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;document&lt;/span&gt;.write(str.split(&lt;span class=&quot;string&quot;&gt;&quot; &quot;&lt;/span&gt;) + &lt;span class=&quot;string&quot;&gt;&quot;&amp;lt;br /&amp;gt;&quot;&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;document&lt;/span&gt;.write(str.split(&lt;span class=&quot;string&quot;&gt;&quot;&quot;&lt;/span&gt;) + &lt;span class=&quot;string&quot;&gt;&quot;&amp;lt;br /&amp;gt;&quot;&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;document&lt;/span&gt;.write(str.split(&lt;span class=&quot;string&quot;&gt;&quot; &quot;&lt;/span&gt;,&lt;span class=&quot;number&quot;&gt;3&lt;/span&gt;))&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;输出:&lt;/p&gt;
+&lt;p&gt;How,are,you,doing,today?&lt;br&gt;H,o,w, ,a,r,e, ,y,o,u, ,d,o,i,n,g, ,t,o,d,a,y,?&lt;br&gt;How,are,you&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;#replace()&lt;/p&gt;
+&lt;p&gt;用于在字符串中用一些字符替换另一些字符，或替换一个与正则表达式匹配的子串。&lt;br&gt;用于替换字符，很好用，可以处理一些意想不到的效果.&lt;/p&gt;
+&lt;figure class=&quot;highlight javascript&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;stringObject.replace(regexp/substr,replacement)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;ul&gt;
+&lt;li&gt;regexp/substr:必需。规定子字符串或要替换的模式的 RegExp 对象。请注意，如果该值是一个字符串，则将它作为要检索的直接量文本模式，而不是首先被转换为 RegExp 对象。&lt;/li&gt;
+&lt;li&gt;replacement:必需。一个字符串值。规定了替换文本或生成替换文本的函数。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;*字符串 stringObject 的 replace() 方法执行的是查找并替换的操作。它将在 stringObject 中查找与 regexp 相匹配的子字符串，然后用 replacement 来替换这些子串。如果 regexp 具有全局标志 g，那么 replace() 方法将替换所有匹配的子串。否则，它只替换第一个匹配子串。&lt;/p&gt;
+&lt;figure class=&quot;highlight javascript&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; str=&lt;span class=&quot;string&quot;&gt;&quot;Visit Myblog!&quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;document&lt;/span&gt;.write(str.replace(&lt;span class=&quot;regexp&quot;&gt;/Visit/&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&quot;Welcome visit&quot;&lt;/span&gt;))&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;输出：Welcome visit Myblog!&lt;/p&gt;
+&lt;figure class=&quot;highlight javascript&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;name = &lt;span class=&quot;string&quot;&gt;&quot;Doe, John&quot;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;document&lt;/span&gt;.write(name.replace(&lt;span class=&quot;regexp&quot;&gt;/(\w+)\s*, \s*(\w+)/&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&quot;$2 $1&quot;&lt;/span&gt;));&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;输出：John Doe&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;#match()&lt;/p&gt;
+&lt;p&gt;可在字符串内检索指定的值，或找到一个或多个正则表达式的匹配。&lt;/p&gt;
+&lt;figure class=&quot;highlight javascript&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;stringObject.match(searchvalue)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;stringObject.match(regexp)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;figure class=&quot;highlight javascript&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; str=&lt;span class=&quot;string&quot;&gt;&quot;Hello world!&quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;document&lt;/span&gt;.write(str.match(&lt;span class=&quot;string&quot;&gt;&quot;world&quot;&lt;/span&gt;) + &lt;span class=&quot;string&quot;&gt;&quot;&amp;lt;br /&amp;gt;&quot;&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;document&lt;/span&gt;.write(str.match(&lt;span class=&quot;string&quot;&gt;&quot;World&quot;&lt;/span&gt;) + &lt;span class=&quot;string&quot;&gt;&quot;&amp;lt;br /&amp;gt;&quot;&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;document&lt;/span&gt;.write(str.match(&lt;span class=&quot;string&quot;&gt;&quot;worlld&quot;&lt;/span&gt;) + &lt;span class=&quot;string&quot;&gt;&quot;&amp;lt;br /&amp;gt;&quot;&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;document&lt;/span&gt;.write(str.match(&lt;span class=&quot;string&quot;&gt;&quot;world!&quot;&lt;/span&gt;))&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;输出：&lt;br&gt;world&lt;br&gt;none&lt;br&gt;world!&lt;/p&gt;
+&lt;figure class=&quot;highlight javascript&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; str=&lt;span class=&quot;string&quot;&gt;&quot;1 plus 2 equal 3&quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;document&lt;/span&gt;.write(str.match(&lt;span class=&quot;regexp&quot;&gt;/\d+/g&lt;/span&gt;))&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;输出：1,2,3&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;平时看别人代码，困难是因为用js的方法属性了解不够多，方法虽然比较多，但每天学几个，总会不学得完。&lt;br&gt;总比一味埋怨好，一些得付出行动。&lt;br&gt;从基本学起，一路进步，不要给看看不懂的代码给吓住…&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;#split()&lt;/p&gt;
+&lt;p&gt;用于把一个字符串分割成字符串数组。&lt;br&gt;数组切割的常用方法。&lt;/p&gt;
+&lt;p&gt;语法&lt;/p&gt;
+&lt;figure class=&quot;highlight javascript&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;stringObject.split(separator,howmany)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;separator:必需。字符串或正则表达式，从该参数指定的地方分割 stringObject。&lt;br&gt;howmany:可选。该参数可指定返回的数组的最大长度。如果设置了该参数，返回的子串不会多于这个参数指定的数组。如果没有设置该参数，整个字符串都会被分割，不考虑它的长度。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="study" scheme="http://ch563.github.io/categories/study/"/>
+    
+    
+  </entry>
+  
+  <entry>
     <title>input 在IE下兼容问题</title>
-    <link href="http://ch563.github.io/2016/06/17/-input/"/>
-    <id>http://ch563.github.io/2016/06/17/-input/</id>
+    <link href="http://ch563.github.io/2016/06/17/input/"/>
+    <id>http://ch563.github.io/2016/06/17/input/</id>
     <published>2016-06-17T02:48:37.000Z</published>
     <updated>2016-06-20T03:40:05.108Z</updated>
     
@@ -70,8 +135,8 @@
   
   <entry>
     <title>前端相关网址导航，收集中...</title>
-    <link href="http://ch563.github.io/2016/06/16/-website/"/>
-    <id>http://ch563.github.io/2016/06/16/-website/</id>
+    <link href="http://ch563.github.io/2016/06/16/website/"/>
+    <id>http://ch563.github.io/2016/06/16/website/</id>
     <published>2016-06-16T11:04:00.000Z</published>
     <updated>2016-06-20T03:39:59.356Z</updated>
     
@@ -195,8 +260,8 @@
   
   <entry>
     <title>学习方向</title>
-    <link href="http://ch563.github.io/2016/06/15/-learnWay/"/>
-    <id>http://ch563.github.io/2016/06/15/-learnWay/</id>
+    <link href="http://ch563.github.io/2016/06/15/learnWay/"/>
+    <id>http://ch563.github.io/2016/06/15/learnWay/</id>
     <published>2016-06-15T09:15:44.000Z</published>
     <updated>2016-06-20T03:39:50.932Z</updated>
     
@@ -220,8 +285,8 @@
   
   <entry>
     <title>git常用命令</title>
-    <link href="http://ch563.github.io/2016/06/15/-git/"/>
-    <id>http://ch563.github.io/2016/06/15/-git/</id>
+    <link href="http://ch563.github.io/2016/06/15/git/"/>
+    <id>http://ch563.github.io/2016/06/15/git/</id>
     <published>2016-06-15T09:01:02.000Z</published>
     <updated>2016-06-20T03:39:44.788Z</updated>
     
@@ -282,8 +347,8 @@
   
   <entry>
     <title>移动web开发开始</title>
-    <link href="http://ch563.github.io/2016/06/15/-mobileWeb/"/>
-    <id>http://ch563.github.io/2016/06/15/-mobileWeb/</id>
+    <link href="http://ch563.github.io/2016/06/15/mobileWeb/"/>
+    <id>http://ch563.github.io/2016/06/15/mobileWeb/</id>
     <published>2016-06-15T07:37:14.000Z</published>
     <updated>2016-06-20T03:39:55.756Z</updated>
     
