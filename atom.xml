@@ -85,17 +85,13 @@
     <link href="http://ch563.github.io/2016/06/17/input/"/>
     <id>http://ch563.github.io/2016/06/17/input/</id>
     <published>2016-06-17T02:48:37.000Z</published>
-    <updated>2016-06-20T03:40:05.108Z</updated>
+    <updated>2016-06-21T01:25:52.546Z</updated>
     
     <content type="html">&lt;p&gt;最近有个项目要求是兼容IE7以上，各种头大啊！！&lt;/p&gt;
 &lt;h2 id=&quot;最怕是搞IE兼容了，各种-css-hack…&quot;&gt;&lt;a href=&quot;#最怕是搞IE兼容了，各种-css-hack…&quot; class=&quot;headerlink&quot; title=&quot;最怕是搞IE兼容了，各种 css hack…&quot;&gt;&lt;/a&gt;最怕是搞IE兼容了，各种 css hack…&lt;/h2&gt;&lt;p&gt;先记录一下input的兼容处理方案&lt;/p&gt;
 &lt;h4 id=&quot;输入框&quot;&gt;&lt;a href=&quot;#输入框&quot; class=&quot;headerlink&quot; title=&quot;输入框&quot;&gt;&lt;/a&gt;输入框&lt;/h4&gt;&lt;p&gt;html代码&lt;/p&gt;
 &lt;figure class=&quot;highlight html&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;input&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;type&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;text&quot;&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;class&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;text&quot;&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;value&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;&quot;&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;placeholder&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;请输入关键字&quot;&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
 &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;p&gt;最近有个项目要求是兼容IE7以上，各种头大啊！！&lt;/p&gt;
-&lt;h2 id=&quot;最怕是搞IE兼容了，各种-css-hack…-1&quot;&gt;&lt;a href=&quot;#最怕是搞IE兼容了，各种-css-hack…-1&quot; class=&quot;headerlink&quot; title=&quot;最怕是搞IE兼容了，各种 css hack…&quot;&gt;&lt;/a&gt;最怕是搞IE兼容了，各种 css hack…&lt;/h2&gt;&lt;p&gt;先记录一下input的兼容处理方案&lt;/p&gt;
-&lt;h4 id=&quot;输入框-1&quot;&gt;&lt;a href=&quot;#输入框-1&quot; class=&quot;headerlink&quot; title=&quot;输入框&quot;&gt;&lt;/a&gt;输入框&lt;/h4&gt;&lt;p&gt;html代码&lt;/p&gt;
-&lt;figure class=&quot;highlight html&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;input&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;type&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;text&quot;&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;class&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;text&quot;&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;value&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;&quot;&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;placeholder&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;请输入关键字&quot;&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
 &lt;p&gt;css代码&lt;/p&gt;
 &lt;figure class=&quot;highlight css&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;selector-class&quot;&gt;.text&lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;attribute&quot;&gt;width&lt;/span&gt;:&lt;span class=&quot;number&quot;&gt;200px&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;attribute&quot;&gt;height&lt;/span&gt;:&lt;span class=&quot;number&quot;&gt;20px&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;attribute&quot;&gt;border&lt;/span&gt;:&lt;span class=&quot;number&quot;&gt;1px&lt;/span&gt; solid &lt;span class=&quot;number&quot;&gt;#ccc&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;attribute&quot;&gt;padding&lt;/span&gt;:&lt;span class=&quot;number&quot;&gt;10px&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
 &lt;p&gt;遇到问题&lt;/p&gt;
@@ -138,7 +134,7 @@
     <link href="http://ch563.github.io/2016/06/16/website/"/>
     <id>http://ch563.github.io/2016/06/16/website/</id>
     <published>2016-06-16T11:04:00.000Z</published>
-    <updated>2016-06-20T03:39:59.356Z</updated>
+    <updated>2016-06-21T01:25:29.050Z</updated>
     
     <content type="html">&lt;h2 id=&quot;资源官网&quot;&gt;&lt;a href=&quot;#资源官网&quot; class=&quot;headerlink&quot; title=&quot;资源官网&quot;&gt;&lt;/a&gt;资源官网&lt;/h2&gt;&lt;ul&gt;
 &lt;li&gt;jQuery：&lt;a href=&quot;http://jquery.com/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://jquery.com/&lt;/a&gt;&lt;/li&gt;
@@ -154,26 +150,6 @@
 &lt;li&gt;SASS中文学习网：&lt;a href=&quot;http://www.w3cplus.com/sassguide/index.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://www.w3cplus.com/sassguide/index.html&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;h2 id=&quot;资源官网-1&quot;&gt;&lt;a href=&quot;#资源官网-1&quot; class=&quot;headerlink&quot; title=&quot;资源官网&quot;&gt;&lt;/a&gt;资源官网&lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;jQuery：&lt;a href=&quot;http://jquery.com/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://jquery.com/&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Zepto：&lt;a href=&quot;http://www.zeptojs.cn/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://www.zeptojs.cn/&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;NodeJS官网：&lt;a href=&quot;https://nodejs.org/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://nodejs.org/&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Bootstrap中文官网：&lt;a href=&quot;http://www.bootcss.com/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://www.bootcss.com/&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Vue中文：&lt;a href=&quot;http://cn.vuejs.org/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://cn.vuejs.org/&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;React中文：&lt;a href=&quot;http://reactjs.cn/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://reactjs.cn/&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;AngularJS中文官网：&lt;a href=&quot;http://www.apjs.net/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://www.apjs.net/&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;CoffeeScript官网：&lt;a href=&quot;http://www.apjs.net/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://www.apjs.net/&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;jade：&lt;a href=&quot;http://jade-lang.com/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://jade-lang.com/&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;PostCSS：&lt;a href=&quot;http://postcss.org/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://postcss.org/&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;SASS中文学习网：&lt;a href=&quot;http://www.w3cplus.com/sassguide/index.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://www.w3cplus.com/sassguide/index.html&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;SUI Mobile：&lt;a href=&quot;http://m.sui.taobao.org/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://m.sui.taobao.org/&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Animate.css：&lt;a href=&quot;http://daneden.github.io/animate.css/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://daneden.github.io/animate.css/&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;ECharts图表：&lt;a href=&quot;http://echarts.baidu.com/index.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://echarts.baidu.com/index.html&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;amaze UI：&lt;a href=&quot;http://amazeui.org/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://amazeui.org/&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Metro UI CSS中文版：&lt;a href=&quot;http://www.w3cplus.com/MetroUICSS/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://www.w3cplus.com/MetroUICSS/&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Haml：&lt;a href=&quot;http://haml.info/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://haml.info/&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;表单验证validate：&lt;a href=&quot;http://rickharrison.github.io/validate.js/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://rickharrison.github.io/validate.js/&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
 &lt;h2 id=&quot;产品设计相关&quot;&gt;&lt;a href=&quot;#产品设计相关&quot; class=&quot;headerlink&quot; title=&quot;产品设计相关&quot;&gt;&lt;/a&gt;产品设计相关&lt;/h2&gt;&lt;ul&gt;
 &lt;li&gt;36氪：&lt;a href=&quot;http://www.36kr.com/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://www.36kr.com/&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;互联网的一些事：&lt;a href=&quot;http://www.yixieshi.com/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://www.yixieshi.com/&lt;/a&gt;&lt;/li&gt;
@@ -263,11 +239,10 @@
     <link href="http://ch563.github.io/2016/06/15/learnWay/"/>
     <id>http://ch563.github.io/2016/06/15/learnWay/</id>
     <published>2016-06-15T09:15:44.000Z</published>
-    <updated>2016-06-20T03:39:50.932Z</updated>
+    <updated>2016-06-21T01:25:00.401Z</updated>
     
     <content type="html">&lt;h2 id=&quot;优秀方案&quot;&gt;&lt;a href=&quot;#优秀方案&quot; class=&quot;headerlink&quot; title=&quot;优秀方案&quot;&gt;&lt;/a&gt;优秀方案&lt;/h2&gt;&lt;p&gt;AngularJS&lt;br&gt;Backbone&lt;br&gt;EmberJS&lt;br&gt;KnockoutJS&lt;br&gt;React&lt;br&gt;etc&lt;/p&gt;
 &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;h2 id=&quot;优秀方案-1&quot;&gt;&lt;a href=&quot;#优秀方案-1&quot; class=&quot;headerlink&quot; title=&quot;优秀方案&quot;&gt;&lt;/a&gt;优秀方案&lt;/h2&gt;&lt;p&gt;AngularJS&lt;br&gt;Backbone&lt;br&gt;EmberJS&lt;br&gt;KnockoutJS&lt;br&gt;React&lt;br&gt;etc&lt;/p&gt;
 &lt;h2 id=&quot;前后端职责清晰了&quot;&gt;&lt;a href=&quot;#前后端职责清晰了&quot; class=&quot;headerlink&quot; title=&quot;前后端职责清晰了&quot;&gt;&lt;/a&gt;前后端职责清晰了&lt;/h2&gt;&lt;h3 id=&quot;后端：&quot;&gt;&lt;a href=&quot;#后端：&quot; class=&quot;headerlink&quot; title=&quot;后端：&quot;&gt;&lt;/a&gt;后端：&lt;/h3&gt;&lt;p&gt;提供数据&lt;br&gt;处理业务逻辑&lt;br&gt;Server-side MVC架构&lt;br&gt;代码跑在服务器上&lt;/p&gt;
 &lt;h3 id=&quot;前端：&quot;&gt;&lt;a href=&quot;#前端：&quot; class=&quot;headerlink&quot; title=&quot;前端：&quot;&gt;&lt;/a&gt;前端：&lt;/h3&gt;&lt;p&gt;接收数据，返回数据&lt;br&gt;处理渲染逻辑&lt;br&gt;Client-side MV*架构&lt;br&gt;代码跑在浏览器上&lt;/p&gt;
 </content>
@@ -288,7 +263,7 @@
     <link href="http://ch563.github.io/2016/06/15/git/"/>
     <id>http://ch563.github.io/2016/06/15/git/</id>
     <published>2016-06-15T09:01:02.000Z</published>
-    <updated>2016-06-20T03:39:44.788Z</updated>
+    <updated>2016-06-21T01:24:47.153Z</updated>
     
     <content type="html">&lt;p&gt;新建文件夹,创建版本     &lt;code&gt;$mkdir &amp;lt;name&amp;gt;&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;查看目录     &lt;code&gt;$pwd&lt;/code&gt;&lt;/p&gt;
@@ -299,14 +274,6 @@
 &lt;p&gt;查看变化     &lt;code&gt;$git diff &amp;lt;file&amp;gt;&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;查看历史     &lt;code&gt;$git log&lt;/code&gt;   //简洁查看   –pretty=oneline&lt;/p&gt;
 &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;p&gt;新建文件夹,创建版本     &lt;code&gt;$mkdir &amp;lt;name&amp;gt;&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;查看目录     &lt;code&gt;$pwd&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;目录变仓库     &lt;code&gt;$git init&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;添加文件     &lt;code&gt;$git add &amp;lt;file&amp;gt;&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;提交     &lt;code&gt;$git commit&lt;/code&gt;   例: $git commit -m “说明”&lt;/p&gt;
-&lt;p&gt;仓库状态     &lt;code&gt;$git status&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;查看变化     &lt;code&gt;$git diff &amp;lt;file&amp;gt;&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;查看历史     &lt;code&gt;$git log&lt;/code&gt;   //简洁查看   –pretty=oneline&lt;/p&gt;
 &lt;p&gt;回顾版本     &lt;code&gt;$git reset --hard HEAD^&lt;/code&gt; //上一个：HEAD^;上上一个：HEAD^^等等….&lt;/p&gt;
 &lt;p&gt;回顾后又拿回新版     &lt;code&gt;$git reset --hard &amp;lt;序列号&amp;gt;&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;查看文件     &lt;code&gt;$cat &amp;lt;file&amp;gt;&lt;/code&gt;&lt;/p&gt;
@@ -350,7 +317,7 @@
     <link href="http://ch563.github.io/2016/06/15/mobileWeb/"/>
     <id>http://ch563.github.io/2016/06/15/mobileWeb/</id>
     <published>2016-06-15T07:37:14.000Z</published>
-    <updated>2016-06-20T03:39:55.756Z</updated>
+    <updated>2016-06-21T01:25:21.458Z</updated>
     
     <content type="html">&lt;h3 id=&quot;meta写法：&quot;&gt;&lt;a href=&quot;#meta写法：&quot; class=&quot;headerlink&quot; title=&quot;meta写法：&quot;&gt;&lt;/a&gt;meta写法：&lt;/h3&gt;&lt;figure class=&quot;highlight html&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;meta&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;name&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;viewport&quot;&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;content&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;width=device-width, initial-scale=1, maximum-scale=1&quot;&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
 &lt;p&gt;width属性控制视口的宽度。可以像width=600这样设为确切的像素数，或者设为device-width这一特殊值来指代比例为100%时屏幕宽度的CSS像素数值。（相应有height及device-height属性，可能对包含基于视口高度调整大小及位置的元素的页面有用。）&lt;/p&gt;
@@ -358,11 +325,6 @@
 &lt;figure class=&quot;highlight html&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;meta&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;name&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;apple-mobile-web-app-capable&quot;&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;content&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;yes&quot;&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
 &lt;p&gt;这个meta的作用是让普通移动网页被添加到主屏幕后，拥有一些类native的功能，很多同学应该都很熟悉了。就是类似隐藏ios的上下状态栏，实现全屏，禁止弹性拖拽，全屏，修改顶部颜色等。&lt;/p&gt;
 &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;h3 id=&quot;meta写法：-1&quot;&gt;&lt;a href=&quot;#meta写法：-1&quot; class=&quot;headerlink&quot; title=&quot;meta写法：&quot;&gt;&lt;/a&gt;meta写法：&lt;/h3&gt;&lt;figure class=&quot;highlight html&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;meta&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;name&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;viewport&quot;&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;content&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;width=device-width, initial-scale=1, maximum-scale=1&quot;&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;width属性控制视口的宽度。可以像width=600这样设为确切的像素数，或者设为device-width这一特殊值来指代比例为100%时屏幕宽度的CSS像素数值。（相应有height及device-height属性，可能对包含基于视口高度调整大小及位置的元素的页面有用。）&lt;/p&gt;
-&lt;p&gt;initial-scale属性控制页面最初加载时的缩放等级。maximum-scale、minimum-scale及user-scalable属性控制允许用户以怎样的方式放大或缩小页面。&lt;/p&gt;
-&lt;figure class=&quot;highlight html&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;meta&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;name&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;apple-mobile-web-app-capable&quot;&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;content&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;yes&quot;&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;这个meta的作用是让普通移动网页被添加到主屏幕后，拥有一些类native的功能，很多同学应该都很熟悉了。就是类似隐藏ios的上下状态栏，实现全屏，禁止弹性拖拽，全屏，修改顶部颜色等。&lt;/p&gt;
 &lt;figure class=&quot;highlight html&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;link&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;rel&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;apple-touch-startup-image&quot;&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;href&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;/img/startup.png&quot;&lt;/span&gt; /&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
 &lt;p&gt;这个属性是当用户把连接保存到手机桌面时使用的图标，如果不设置，则会用网页的截图。有了这，就可以让你的网页像APP一样存在手机里了&lt;/p&gt;
 &lt;figure class=&quot;highlight html&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;meta&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;name&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;apple-mobile-web-app-status-bar-style&quot;&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;content&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;black-translucent&quot;&lt;/span&gt; /&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;

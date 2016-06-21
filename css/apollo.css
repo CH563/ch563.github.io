@@ -418,7 +418,8 @@ table {
 
 header {
   min-height: 60px;
-  border-bottom: 1px solid #ddd; }
+  border-bottom: 1px solid #ddd;
+  background: #fff; }
   header .logo-link {
     float: left; }
   header .nav {
