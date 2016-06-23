@@ -388,7 +388,9 @@ a.post-title-link:hover {
   border-bottom: 2px solid #4078c0; }
 
 hr {
-  border: 0; }
+  border: 0;
+  border-bottom: 1px dashed #cfcfcf;
+  margin: 30px 0; }
 
 code {
   margin: 0 2px;
@@ -756,12 +758,34 @@ pre {
 section.container {
   margin: 2em 10px; }
 
+.container-wrap {
+  background: #fff; }
+
 @media screen and (min-width: 900px) {
   .wrap {
     width: 900px;
     margin: 0 auto; }
   header {
     padding: 20px; } }
+
+@media screen and (min-width: 980px) {
+  body {
+    background: #2c3e50; }
+    body:before, body:after {
+      display: block;
+      content: "";
+      width: 100%;
+      height: 20px;
+      position: fixed;
+      top: 0;
+      left: 0;
+      background: inherit;
+      z-index: 99; }
+    body:after {
+      top: auto;
+      bottom: 0; }
+  .container-wrap {
+    margin: 20px; } }
 
 @media screen and (max-width: 900px) {
   .wrap {
