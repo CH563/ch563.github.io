@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://ch563.github.io/"/>
-  <updated>2016-06-23T10:53:44.000Z</updated>
+  <updated>2016-06-23T11:06:48.208Z</updated>
   <id>http://ch563.github.io/</id>
   
   <author>
@@ -16,11 +16,11 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>第日一撸:className</title>
+    <title>每日一撸:className</title>
     <link href="http://ch563.github.io/2016/06/23/classname/"/>
     <id>http://ch563.github.io/2016/06/23/classname/</id>
     <published>2016-06-23T10:06:45.000Z</published>
-    <updated>2016-06-23T10:53:44.000Z</updated>
+    <updated>2016-06-23T11:06:48.208Z</updated>
     
     <content type="html">&lt;h3 id=&quot;className&quot;&gt;&lt;a href=&quot;#className&quot; class=&quot;headerlink&quot; title=&quot;className&quot;&gt;&lt;/a&gt;className&lt;/h3&gt;&lt;p&gt;设置或返回元素的 class属性&lt;/p&gt;
 &lt;figure class=&quot;highlight javascript&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;HTMLElementObject.className=classname&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
@@ -51,11 +51,11 @@
   </entry>
   
   <entry>
-    <title>第日一撸:attribute 所有使用方法</title>
+    <title>每日一撸:attribute 所有使用方法</title>
     <link href="http://ch563.github.io/2016/06/22/getAttribute/"/>
     <id>http://ch563.github.io/2016/06/22/getAttribute/</id>
     <published>2016-06-22T08:53:58.000Z</published>
-    <updated>2016-06-23T10:33:09.871Z</updated>
+    <updated>2016-06-23T11:07:09.992Z</updated>
     
     <content type="html">&lt;ul&gt;
 &lt;li&gt;&lt;code&gt;attributes&lt;/code&gt; 获取一个属性作为对象&lt;/li&gt;
@@ -128,11 +128,11 @@
   </entry>
   
   <entry>
-    <title>第日一撸:splite() | replace() | match() 方法</title>
+    <title>每日一撸:splite() | replace() | match() 方法</title>
     <link href="http://ch563.github.io/2016/06/20/study-splite/"/>
     <id>http://ch563.github.io/2016/06/20/study-splite/</id>
     <published>2016-06-20T07:00:39.000Z</published>
-    <updated>2016-06-23T09:05:05.203Z</updated>
+    <updated>2016-06-23T11:07:03.528Z</updated>
     
     <content type="html">&lt;h3 id=&quot;split&quot;&gt;&lt;a href=&quot;#split&quot; class=&quot;headerlink&quot; title=&quot;split()&quot;&gt;&lt;/a&gt;split()&lt;/h3&gt;&lt;p&gt;用于把一个字符串分割成字符串数组。&lt;br&gt;数组切割的常用方法。&lt;/p&gt;
 &lt;p&gt;语法&lt;/p&gt;
