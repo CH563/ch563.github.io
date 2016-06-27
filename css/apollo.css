@@ -573,7 +573,7 @@ code,
 pre {
   font-size: 0.8em;
   background-color: #f8f8f8;
-  font-family: 'Roboto Mono', Monaco, courier, monospace; }
+  font-family: 'Hiragino Sans GB',STHeiti,'Microsoft Yahei',helvetica,arial,sans-serif; }
 
 .highlight {
   position: relative;
@@ -581,7 +581,8 @@ pre {
   border-radius: 2px;
   line-height: 1.1em;
   background-color: #f8f8f8;
-  overflow-x: auto; }
+  overflow-x: auto;
+  border-left: 1px solid #4078c0; }
   .highlight table, .highlight tr, .highlight td {
     width: 100%;
     border-collapse: collapse;
@@ -661,7 +662,7 @@ pre {
   content: 'C++'; }
 
 pre {
-  color: #525252;
+  color: #333;
   word-break: break-all;
   white-space: normal; }
   pre .function .keyword,
