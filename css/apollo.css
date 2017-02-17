@@ -571,7 +571,7 @@ header {
 
 code,
 pre {
-  font-size: 0.8em;
+  font-size: 0.9em;
   background-color: #f8f8f8;
   font-family: 'Hiragino Sans GB',STHeiti,'Microsoft Yahei',helvetica,arial,sans-serif; }
 
@@ -592,7 +592,7 @@ pre {
     display: none; }
   .highlight .code pre {
     padding: 1.2em 1.4em;
-    line-height: 1.5em;
+    line-height: 1.8em;
     margin: 0; }
 
 .highlight.html .code:after, .highlight.js .code:after, .highlight.bash .code:after, .highlight.css .code:after, .highlight.scss .code:after, .highlight.diff .code:after, .highlight.java .code:after, .highlight.xml .code:after, .highlight.python .code:after, .highlight.json .code:after, .highlight.swift .code:after, .highlight.ruby .code:after, .highlight.perl .code:after, .highlight.php .code:after, .highlight.c .code:after, .highlight.cpp .code:after {
