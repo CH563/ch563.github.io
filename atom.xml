@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>DevinChen</title>
+  <title>陈立文</title>
   <subtitle>前端学习的一些笔记和感悟</subtitle>
   <link href="/atom.xml" rel="self"/>
   
@@ -9,7 +9,7 @@
   <id>http://ch563.github.io/</id>
   
   <author>
-    <name>DevinChen</name>
+    <name>陈立文</name>
     
   </author>
   
@@ -77,6 +77,32 @@
     </summary>
     
       <category term="exp" scheme="http://ch563.github.io/categories/exp/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>一直在路上</title>
+    <link href="http://ch563.github.io/2016/08/18/fontdev/"/>
+    <id>http://ch563.github.io/2016/08/18/fontdev/</id>
+    <published>2016-08-18T03:11:15.000Z</published>
+    <updated>2017-02-18T14:42:47.549Z</updated>
+    
+    <content type="html">&lt;p&gt;在校时，就喜欢做网站，参加了学校的网页设计大赛，当时用ASP做了个PS学习站，还拿了二等奖。那时做网站还是主流是table布局，很多效果还有局限。到了快毕业那会，在网上接触到CSS布局，各种特效，网站的换肤最吸引我。那时就迷上了CSS，记得我常去的网站的520css学习CSS的各种属性和方法，如今，网站已不在了。&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;毕业后，由于那时还没前端这一说，有的也是切图、页面重构之类。但招的公司不多，一直找不到对应的工作机会。后来去一家公司面试，以为我是做网页设计的，就叫我当场设计一个简单的企业首页。还好我之前也做对个人网站设计过好几版，对PS一些技巧还是比较熟的。我就跟据他们提供的资料，结合平时上网看的东西，设计了一个首页。出来后，面试官还是挺喜欢的。后面才发现我本来是想来面试页面重构的，就说他们现在没有这个职位，一般是后端做的，这里后端也的工作也是套模版。然后如果我来的话，可以负责网页设计和页面设计。我想一下，就答应了。然后就进了“美工”这个坑。&lt;/p&gt;
+&lt;p&gt;在这里一做了就两年了，设计过各种各样的网页，也接触了各种浏览器的兼容的坑，也学会用了css hack，JS还是停留在网页找插件修改成自己想要的效果了。后面发现自己也是处于瓶颈期，就想换个环境，做些不同东西来提升下。就换了个工作，去了一个传统的，做政务后台集成公司。在这里工作也是做“美工”，一直都是给叫着陈工陈工。不过在这里开始深入接触JavaScript的开发，学着一堆做JAVA的学习各种面向对象，各种逻辑思维。&lt;/p&gt;
+&lt;p&gt;在这里工作中，我学习的更主要还是靠自己在网上学习更多前端的知识。在这里我也是单打独斗的，这个职位只有我一个，平时也是比较忙的，兼顾着平面设计、网页设计、页面制作、flash动画制作、平时公司宣传资料设计、APP UI设计与切图等…,在别人眼里，特别人事MM眼里，我几乎是全能的，什么都会，到最后拍照、录视频和后期处理也是找上我了，不过我也欣喜自己能做到多，也想在各方面都取成就和赞扬。但我怀着的作品在一些社区时，才发现我的设计就根本不值一提。是，我没什么美术功底，没系统的学习过相关知识，做的东西全是网上自学而来。当我发现我做了那么多东西都没一样可以拿得出来在网炫时，我发现在，我是不是搞的太杂，什么都想搞，弄的没一样是专的。在这个时候，我终于意识到我当初的喜欢是什么，是网页！&lt;/p&gt;
+&lt;p&gt;在我回来看前端的知识时，发现在前端在我搞这各种东西时，已经在飞快的发展，快到我有点跟不上。我开始泡各种社区，由最基本的学起，HTML5,CSS3各个新标签、新属性，新方法。又接触到SASS这个新大陆来快速编写我的CSS。各种响应式布局，自适应，CSS3媒本查询的，简直带我走上了一个新起点。直到我发现BOOTSTRAP，我又迷上这个UI框架了，利用这个框架折腾种页面和后台应用，后来我开始对它的源码一点点研究，学习它的方法。对于CSS的应用真的开拓了一个新高度，好多应用技巧平时真的是不会想到的，优先移动端的响应式，栅格系统，各种插件。&lt;/p&gt;
+&lt;p&gt;现在已辞去在这工作三年多的“美工”，开始主攻前端的各种研究学习。REM的移动布局方案，gulp项目构建，&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;在校时，就喜欢做网站，参加了学校的网页设计大赛，当时用ASP做了个PS学习站，还拿了二等奖。那时做网站还是主流是table布局，很多效果还有局限。到了快毕业那会，在网上接触到CSS布局，各种特效，网站的换肤最吸引我。那时就迷上了CSS，记得我常去的网站的520css学习CSS的各种属性和方法，如今，网站已不在了。&lt;br&gt;
+    
+    </summary>
+    
+      <category term="diary" scheme="http://ch563.github.io/categories/diary/"/>
     
     
   </entry>
@@ -582,12 +608,14 @@
     <link href="http://ch563.github.io/2016/06/15/learnWay/"/>
     <id>http://ch563.github.io/2016/06/15/learnWay/</id>
     <published>2016-06-15T09:15:44.000Z</published>
-    <updated>2016-06-21T01:25:00.401Z</updated>
+    <updated>2017-02-18T03:09:42.958Z</updated>
     
     <content type="html">&lt;h2 id=&quot;优秀方案&quot;&gt;&lt;a href=&quot;#优秀方案&quot; class=&quot;headerlink&quot; title=&quot;优秀方案&quot;&gt;&lt;/a&gt;优秀方案&lt;/h2&gt;&lt;p&gt;AngularJS&lt;br&gt;Backbone&lt;br&gt;EmberJS&lt;br&gt;KnockoutJS&lt;br&gt;React&lt;br&gt;etc&lt;/p&gt;
 &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;h2 id=&quot;前后端职责清晰了&quot;&gt;&lt;a href=&quot;#前后端职责清晰了&quot; class=&quot;headerlink&quot; title=&quot;前后端职责清晰了&quot;&gt;&lt;/a&gt;前后端职责清晰了&lt;/h2&gt;&lt;h3 id=&quot;后端：&quot;&gt;&lt;a href=&quot;#后端：&quot; class=&quot;headerlink&quot; title=&quot;后端：&quot;&gt;&lt;/a&gt;后端：&lt;/h3&gt;&lt;p&gt;提供数据&lt;br&gt;处理业务逻辑&lt;br&gt;Server-side MVC架构&lt;br&gt;代码跑在服务器上&lt;/p&gt;
-&lt;h3 id=&quot;前端：&quot;&gt;&lt;a href=&quot;#前端：&quot; class=&quot;headerlink&quot; title=&quot;前端：&quot;&gt;&lt;/a&gt;前端：&lt;/h3&gt;&lt;p&gt;接收数据，返回数据&lt;br&gt;处理渲染逻辑&lt;br&gt;Client-side MV*架构&lt;br&gt;代码跑在浏览器上&lt;/p&gt;
+&lt;h2 id=&quot;前后端职责清晰了&quot;&gt;&lt;a href=&quot;#前后端职责清晰了&quot; class=&quot;headerlink&quot; title=&quot;前后端职责清晰了&quot;&gt;&lt;/a&gt;前后端职责清晰了&lt;/h2&gt;&lt;p&gt;&lt;strong&gt; 后端：&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;提供数据&lt;br&gt;处理业务逻辑&lt;br&gt;Server-side MVC架构&lt;br&gt;代码跑在服务器上&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt; 前端：&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;接收数据，返回数据&lt;br&gt;处理渲染逻辑&lt;br&gt;Client-side MV*架构&lt;br&gt;代码跑在浏览器上&lt;/p&gt;
 </content>
     
     <summary type="html">
