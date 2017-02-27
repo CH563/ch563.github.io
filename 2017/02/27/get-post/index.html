@@ -1,0 +1,58 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> 我理解的HTTP中的GET与POST是怎么样子的 · 陈立文</title><meta name="description" content="我理解的HTTP中的GET与POST是怎么样子的 - 陈立文"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="short icon" href="/favicon.png"><link rel="stylesheet" href="/css/apollo.css"><link rel="stylesheet" href="http://fonts.useso.com/css?family=Source+Sans+Pro:400,600" type="text/css"></head><body><div class="container-wrap"><div class="wrap"><header><a href="/" class="logo-link"><img src="/gallery.png"></a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">首页</a></li><li class="nav-list-item"><a href="/categories/exp/" target="_self" class="nav-list-link">经验文章</a></li><li class="nav-list-item"><a href="/categories/study/" target="_self" class="nav-list-link">每日一撸</a></li><li class="nav-list-item"><a href="/categories/diary/" target="_self" class="nav-list-link">随笔</a></li><li class="nav-list-item"><a href="/2016/06/16/website/" target="_self" class="nav-list-link">前端导航</a></li><li class="nav-list-item"><a href="/archives/" target="_self" class="nav-list-link">所有文章</a></li></ul></header><section class="container"><div class="post"><article class="post-block"><h1 class="post-title">我理解的HTTP中的GET与POST是怎么样子的</h1><div class="post-info">Feb 27, 2017</div><div class="post-content"><p>今天的面试中，面试官问到一个问题是：你是怎么理解GET和POST这两个HTTP请求的？</p>
+<p>这个我真没深究中他们中区别，一下子有点懵了…</p>
+<p>我想了想就回答：GET是请求获取数据，POST是提交数据；GET没有POST安全，会把请求的东西暴露在URL上。</p>
+<p>然后面试官蛋定的问：还有吗？</p>
+<p>“没有了，我理解的就这么多了。。。”</p>
+<p>“。。。”</p>
+<p>经过个这轮尴尬的面试，回来后迫不及待的把GET与POST深挖出来:<br><a id="more"></a></p>
+<h3 id="首先什么是HTTP？"><a href="#首先什么是HTTP？" class="headerlink" title="首先什么是HTTP？"></a>首先什么是HTTP？</h3><p>超文本传输协议（HTTP）的设计目的是保证客户机与服器之间的通信。就是浏览器与服务器之间的请求-应答的协议。</p>
+<p>也是说：你访问网页时浏览器向服务器交HTTP请求；服务器再把你浏览器请求的内容返回来给你，在浏览器上显示。</p>
+<p>在HTTP中，最基本的方法有4种，分别是GET、POST、PUT、DELETE。对应的就是查、改、增、删 4个操作。常用就是GET：用于获取/查询数据；POST：一般用于更新数据。</p>
+<h3 id="GET方法"><a href="#GET方法" class="headerlink" title="GET方法"></a>GET方法</h3><p>查询的值在URL中发送的：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/test/demo_form.asp?name1=value1&amp;name2=value2</span><br></pre></td></tr></table></figure>
+<p>可以从URL看到，GET请求的值是以?分割URL和传输数据，参数之间以&amp;相连。</p>
+<p>如果值是英文字母/数字，原样发送；如果是空格，转换为+，如果是中文/其他字符，则直接把字符串用BASE64加密，得出如：%E4%BD%A0%E5%A5%BD，其中％XX中的XX为该符号以16进制表示的ASCII。</p>
+<ul>
+<li>GET请求可被缓存</li>
+<li>GET请求保留在浏览器历史记录中</li>
+<li>GET请求可被收藏为书签</li>
+<li>GET请求不应在处理敏感数据时使用</li>
+<li>GET请求有长度限制(最多只能是1024字节)</li>
+<li>GET请求只应当用于取回数据</li>
+</ul>
+<p>因为GET只是获取数据，也就相当于查数据。对数据库是不会有影响的，不会修改和增加数据。也就是幂等的，（幂等：我理解是经过多次运算什么的，最后的值还是跟第一次的值相等）。</p>
+<h3 id="POST方法"><a href="#POST方法" class="headerlink" title="POST方法"></a>POST方法</h3><p>查询的值是在POST请求的HTTP消息主体中发送的：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">POST /test/demo_form.asp HTTP/1.1</span><br><span class="line">Host: w3schools.com</span><br><span class="line">name1=value&amp;name2=value2</span><br></pre></td></tr></table></figure>
+<p>POST是没有大小限制的，HTTP协议规范也没有进行大小限制。</p>
+<ul>
+<li>POST请求不会被缓存</li>
+<li>POST请求不会保留在浏览器历史记录中</li>
+<li>POST不能被收藏为书签</li>
+<li>POST请求对数据长度没有要求</li>
+</ul>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>POST的安全性要比GET的安全性高。</p>
+<p>比如：通过GET提交数据，用户名和密码将出现在URL上；</p>
+<ul>
+<li>登录页面有可能被浏览器缓存</li>
+<li>其他人查看浏览器的历史纪录，那么别人就可以拿到你的账号和密码了</li>
+<li>除此之外，使用GET提交数据还可能会造成Cross-site request forgery攻击</li>
+</ul>
+<p>GET是向服务器发送获取数据是一种请求</p>
+<p>POST是向服务器提交数据的一种请求</p>
+<p>在FORM中，Method默认为“GET”，实质上，GET和POST只是发送机制不同，并不是一个取一个发！</p>
+<p><strong> 参考资料 </strong></p>
+<ul>
+<li><a href="http://www.w3school.com.cn/tags/html_ref_httpmethods.asp" target="_blank" rel="external">http://www.w3school.com.cn/tags/html_ref_httpmethods.asp</a></li>
+<li><a href="http://www.cnblogs.com/hyddd/archive/2009/03/31/1426026.html" target="_blank" rel="external">http://www.cnblogs.com/hyddd/archive/2009/03/31/1426026.html</a></li>
+</ul>
+</div></article></div></section><footer><div class="paginator"><a href="/2017/02/21/js-pic/" class="next">NEXT</a></div><div data-thread-key="2017/02/27/get-post/" data-title="我理解的HTTP中的GET与POST是怎么样子的" data-url="http://ch563.github.io/2017/02/27/get-post/" data-author-key="1" class="ds-thread"></div><script>var duoshuoQuery = {short_name:"ch563"};
+(function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+     || document.getElementsByTagName('body')[0]).appendChild(ds);
+})();
+
+</script><div class="copyright"><p>© 2016 - 2017 <a href="http://ch563.github.io">陈立文</a>,<a href="https://hexo.io/" target="_blank">Hexo</a>Theme by<a href="https://github.com/pinggod/hexo-theme-apollo" target="_blank">apollo</a></p><p><a href="https://github.com/CH563" target="_blank"><img src="/img/github.png" class="github"></a><a href="http://codepen.io/ch563/" target="_blank"><img src="/img/codepen.png" class="github"></a><a href="/atom.xml" target="_blank"><img src="/img/rss.png" class="github rss"></a></p></div></footer></div></div><script async src="//cdn.bootcss.com/mathjax/2.6.1/MathJax.js?config=TeX-MML-AM_CHTML"></script></body></html>

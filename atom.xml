@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://ch563.github.io/"/>
-  <updated>2017-02-21T15:38:56.270Z</updated>
+  <updated>2017-02-27T09:41:11.382Z</updated>
   <id>http://ch563.github.io/</id>
   
   <author>
@@ -14,6 +14,79 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>我理解的HTTP中的GET与POST是怎么样子的</title>
+    <link href="http://ch563.github.io/2017/02/27/get-post/"/>
+    <id>http://ch563.github.io/2017/02/27/get-post/</id>
+    <published>2017-02-27T08:12:26.000Z</published>
+    <updated>2017-02-27T09:41:11.382Z</updated>
+    
+    <content type="html">&lt;p&gt;今天的面试中，面试官问到一个问题是：你是怎么理解GET和POST这两个HTTP请求的？&lt;/p&gt;
+&lt;p&gt;这个我真没深究中他们中区别，一下子有点懵了…&lt;/p&gt;
+&lt;p&gt;我想了想就回答：GET是请求获取数据，POST是提交数据；GET没有POST安全，会把请求的东西暴露在URL上。&lt;/p&gt;
+&lt;p&gt;然后面试官蛋定的问：还有吗？&lt;/p&gt;
+&lt;p&gt;“没有了，我理解的就这么多了。。。”&lt;/p&gt;
+&lt;p&gt;“。。。”&lt;/p&gt;
+&lt;p&gt;经过个这轮尴尬的面试，回来后迫不及待的把GET与POST深挖出来:&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&quot;首先什么是HTTP？&quot;&gt;&lt;a href=&quot;#首先什么是HTTP？&quot; class=&quot;headerlink&quot; title=&quot;首先什么是HTTP？&quot;&gt;&lt;/a&gt;首先什么是HTTP？&lt;/h3&gt;&lt;p&gt;超文本传输协议（HTTP）的设计目的是保证客户机与服器之间的通信。就是浏览器与服务器之间的请求-应答的协议。&lt;/p&gt;
+&lt;p&gt;也是说：你访问网页时浏览器向服务器交HTTP请求；服务器再把你浏览器请求的内容返回来给你，在浏览器上显示。&lt;/p&gt;
+&lt;p&gt;在HTTP中，最基本的方法有4种，分别是GET、POST、PUT、DELETE。对应的就是查、改、增、删 4个操作。常用就是GET：用于获取/查询数据；POST：一般用于更新数据。&lt;/p&gt;
+&lt;h3 id=&quot;GET方法&quot;&gt;&lt;a href=&quot;#GET方法&quot; class=&quot;headerlink&quot; title=&quot;GET方法&quot;&gt;&lt;/a&gt;GET方法&lt;/h3&gt;&lt;p&gt;查询的值在URL中发送的：&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;/test/demo_form.asp?name1=value1&amp;amp;name2=value2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;可以从URL看到，GET请求的值是以?分割URL和传输数据，参数之间以&amp;amp;相连。&lt;/p&gt;
+&lt;p&gt;如果值是英文字母/数字，原样发送；如果是空格，转换为+，如果是中文/其他字符，则直接把字符串用BASE64加密，得出如：%E4%BD%A0%E5%A5%BD，其中％XX中的XX为该符号以16进制表示的ASCII。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;GET请求可被缓存&lt;/li&gt;
+&lt;li&gt;GET请求保留在浏览器历史记录中&lt;/li&gt;
+&lt;li&gt;GET请求可被收藏为书签&lt;/li&gt;
+&lt;li&gt;GET请求不应在处理敏感数据时使用&lt;/li&gt;
+&lt;li&gt;GET请求有长度限制(最多只能是1024字节)&lt;/li&gt;
+&lt;li&gt;GET请求只应当用于取回数据&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;因为GET只是获取数据，也就相当于查数据。对数据库是不会有影响的，不会修改和增加数据。也就是幂等的，（幂等：我理解是经过多次运算什么的，最后的值还是跟第一次的值相等）。&lt;/p&gt;
+&lt;h3 id=&quot;POST方法&quot;&gt;&lt;a href=&quot;#POST方法&quot; class=&quot;headerlink&quot; title=&quot;POST方法&quot;&gt;&lt;/a&gt;POST方法&lt;/h3&gt;&lt;p&gt;查询的值是在POST请求的HTTP消息主体中发送的：&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;POST /test/demo_form.asp HTTP/1.1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Host: w3schools.com&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;name1=value&amp;amp;name2=value2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;POST是没有大小限制的，HTTP协议规范也没有进行大小限制。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;POST请求不会被缓存&lt;/li&gt;
+&lt;li&gt;POST请求不会保留在浏览器历史记录中&lt;/li&gt;
+&lt;li&gt;POST不能被收藏为书签&lt;/li&gt;
+&lt;li&gt;POST请求对数据长度没有要求&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;总结&quot;&gt;&lt;a href=&quot;#总结&quot; class=&quot;headerlink&quot; title=&quot;总结&quot;&gt;&lt;/a&gt;总结&lt;/h3&gt;&lt;p&gt;POST的安全性要比GET的安全性高。&lt;/p&gt;
+&lt;p&gt;比如：通过GET提交数据，用户名和密码将出现在URL上；&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;登录页面有可能被浏览器缓存&lt;/li&gt;
+&lt;li&gt;其他人查看浏览器的历史纪录，那么别人就可以拿到你的账号和密码了&lt;/li&gt;
+&lt;li&gt;除此之外，使用GET提交数据还可能会造成Cross-site request forgery攻击&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;GET是向服务器发送获取数据是一种请求&lt;/p&gt;
+&lt;p&gt;POST是向服务器提交数据的一种请求&lt;/p&gt;
+&lt;p&gt;在FORM中，Method默认为“GET”，实质上，GET和POST只是发送机制不同，并不是一个取一个发！&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt; 参考资料 &lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.w3school.com.cn/tags/html_ref_httpmethods.asp&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://www.w3school.com.cn/tags/html_ref_httpmethods.asp&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.cnblogs.com/hyddd/archive/2009/03/31/1426026.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://www.cnblogs.com/hyddd/archive/2009/03/31/1426026.html&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;今天的面试中，面试官问到一个问题是：你是怎么理解GET和POST这两个HTTP请求的？&lt;/p&gt;
+&lt;p&gt;这个我真没深究中他们中区别，一下子有点懵了…&lt;/p&gt;
+&lt;p&gt;我想了想就回答：GET是请求获取数据，POST是提交数据；GET没有POST安全，会把请求的东西暴露在URL上。&lt;/p&gt;
+&lt;p&gt;然后面试官蛋定的问：还有吗？&lt;/p&gt;
+&lt;p&gt;“没有了，我理解的就这么多了。。。”&lt;/p&gt;
+&lt;p&gt;“。。。”&lt;/p&gt;
+&lt;p&gt;经过个这轮尴尬的面试，回来后迫不及待的把GET与POST深挖出来:&lt;br&gt;
+    
+    </summary>
+    
+      <category term="exp" scheme="http://ch563.github.io/categories/exp/"/>
+    
+    
+  </entry>
   
   <entry>
     <title>JavaScript结构全面分析图</title>
