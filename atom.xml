@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://ch563.github.io/"/>
-  <updated>2017-03-07T15:31:12.903Z</updated>
+  <updated>2017-03-30T14:38:44.455Z</updated>
   <id>http://ch563.github.io/</id>
   
   <author>
@@ -14,6 +14,53 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>更好的理解闭包</title>
+    <link href="http://ch563.github.io/2017/03/10/closure/"/>
+    <id>http://ch563.github.io/2017/03/10/closure/</id>
+    <published>2017-03-10T13:41:31.000Z</published>
+    <updated>2017-03-30T14:38:44.455Z</updated>
+    
+    <content type="html">&lt;p&gt;闭包是Javascript常说的一个话题，面试官都问的问题，很多高级应用都要依靠闭包实现。&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;闭包是指那些能够访问独立(自由)变量的函数 (变量在本地使用，但定义在一个封闭的作用域中)。换句话说，这些函数可以“记忆”它被创建时候的环境。&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;要理解闭包，首先要弄懂Javascript的变量作用域。&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&quot;变量的作用域&quot;&gt;&lt;a href=&quot;#变量的作用域&quot; class=&quot;headerlink&quot; title=&quot;变量的作用域&quot;&gt;&lt;/a&gt;变量的作用域&lt;/h3&gt;&lt;p&gt;这是一个至关重要的问题。变量的定义并不是以代码块作为域的，而是以函数作为作用域。也就是说，如果变量是在某个函数中定义的，那么它的函数以外的地方是不可见的。而如果变量是定义在if或者for这样的代码块中的，它的代码块之外是可见的。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;全局变量：指的是定义在全局代码中的变量。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;局部变量：指的在函数里定义的变量。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;其中，函数内的代码可以像访问自己的局部变量那样访问全局变量，反之则不行。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt; 如果我们声明一个变量时没有使用var语句，该变量就会黙认为全局变量 &lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;尽量将全局变量的数量降到最低，以避免命名冲突。想想，如果两个人在同一段脚本的不同函数中使用了相同的全局变量名，就会发生令你捉狂的BUG，也难以找到。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;最好使用var来声时变量(ps:es6中，let比var更完美，实现块级作用域)。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;最好可以在函数的第一行，定义变量，后期也轻松找到相关变量的定义。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt; 变量提升 &lt;/strong&gt;&lt;/p&gt;
+&lt;figure class=&quot;highlight javascript&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; a = &lt;span class=&quot;number&quot;&gt;123&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;f&lt;/span&gt;(&lt;span class=&quot;params&quot;&gt;&lt;/span&gt;)&lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    alert(a);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; a = &lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    alert(a);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;f();&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;这里第一个alert()是undefined，这是因为函数域始终优先于全局域，所以局部变量a会覆盖所有与它同名的全局变量，尽管第一次调用时，a还没正式定义（值为undefined），但a已经存在于本地空间了。这就是&lt;strong&gt;提升&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt; 当Javascript执行过程进入新的函数时，这个函数内被声明的所有变量都会被提升到函数最开始的地方。&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;注意是，提升的只是变量，相关的赋值操作并不会被提升。&lt;/p&gt;
+&lt;p&gt;未完，待续…&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;闭包是Javascript常说的一个话题，面试官都问的问题，很多高级应用都要依靠闭包实现。&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;闭包是指那些能够访问独立(自由)变量的函数 (变量在本地使用，但定义在一个封闭的作用域中)。换句话说，这些函数可以“记忆”它被创建时候的环境。&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;要理解闭包，首先要弄懂Javascript的变量作用域。&lt;br&gt;
+    
+    </summary>
+    
+      <category term="exp" scheme="http://ch563.github.io/categories/exp/"/>
+    
+    
+  </entry>
   
   <entry>
     <title>Javascript的函数递归</title>
@@ -994,63 +1041,6 @@
 &lt;p&gt;仓库状态     &lt;code&gt;$git status&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;查看变化     &lt;code&gt;$git diff &amp;lt;file&amp;gt;&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;查看历史     &lt;code&gt;$git log&lt;/code&gt;   //简洁查看   –pretty=oneline&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="exp" scheme="http://ch563.github.io/categories/exp/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>移动web开发开始</title>
-    <link href="http://ch563.github.io/2016/06/15/mobileWeb/"/>
-    <id>http://ch563.github.io/2016/06/15/mobileWeb/</id>
-    <published>2016-06-15T07:37:14.000Z</published>
-    <updated>2017-02-17T09:46:53.783Z</updated>
-    
-    <content type="html">&lt;h3 id=&quot;meta写法：&quot;&gt;&lt;a href=&quot;#meta写法：&quot; class=&quot;headerlink&quot; title=&quot;meta写法：&quot;&gt;&lt;/a&gt;meta写法：&lt;/h3&gt;&lt;figure class=&quot;highlight html&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;meta&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;name&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;viewport&quot;&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;content&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;width=device-width, initial-scale=1, maximum-scale=1&quot;&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;width属性控制视口的宽度。可以像width=600这样设为确切的像素数，或者设为device-width这一特殊值来指代比例为100%时屏幕宽度的CSS像素数值。（相应有height及device-height属性，可能对包含基于视口高度调整大小及位置的元素的页面有用。）&lt;/p&gt;
-&lt;p&gt;initial-scale属性控制页面最初加载时的缩放等级。maximum-scale、minimum-scale及user-scalable属性控制允许用户以怎样的方式放大或缩小页面。&lt;/p&gt;
-&lt;figure class=&quot;highlight html&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;meta&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;name&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;apple-mobile-web-app-capable&quot;&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;content&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;yes&quot;&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;这个meta的作用是让普通移动网页被添加到主屏幕后，拥有一些类native的功能，很多同学应该都很熟悉了。就是类似隐藏ios的上下状态栏，实现全屏，禁止弹性拖拽，全屏，修改顶部颜色等。&lt;/p&gt;
-&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;figure class=&quot;highlight html&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;link&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;rel&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;apple-touch-startup-image&quot;&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;href&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;/img/startup.png&quot;&lt;/span&gt; /&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;这个属性是当用户把连接保存到手机桌面时使用的图标，如果不设置，则会用网页的截图。有了这，就可以让你的网页像APP一样存在手机里了&lt;/p&gt;
-&lt;figure class=&quot;highlight html&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;meta&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;name&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;apple-mobile-web-app-status-bar-style&quot;&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;content&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;black-translucent&quot;&lt;/span&gt; /&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;这个是APP启动画面图片，用途和上面的类似，如果不设置，启动画面就是白屏，图片像素就是手机全屏的像素&lt;/p&gt;
-&lt;figure class=&quot;highlight html&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;meta&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;name&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;apple-touch-fullscreen&quot;&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;content&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;yes&quot;&lt;/span&gt; /&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;meta&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;name&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;apple-mobile-web-app-capable&quot;&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;content&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;yes&quot;&lt;/span&gt; /&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;这个描述是表示打开的web app的最上面的时间、信号栏是黑色的，当然也可以设置其它参数，详细参数说明请参照：Safari HTML Reference - Supported Meta Tags&lt;/p&gt;
-&lt;h3 id=&quot;input-type-date的placeholder支持性&quot;&gt;&lt;a href=&quot;#input-type-date的placeholder支持性&quot; class=&quot;headerlink&quot; title=&quot;input type date的placeholder支持性&quot;&gt;&lt;/a&gt;input type date的placeholder支持性&lt;/h3&gt;&lt;h4 id=&quot;桌面端：&quot;&gt;&lt;a href=&quot;#桌面端：&quot; class=&quot;headerlink&quot; title=&quot;桌面端：&quot;&gt;&lt;/a&gt;桌面端：&lt;/h4&gt;&lt;p&gt;Safari不支持datepicker，placeholder正常显示；&lt;br&gt;Firefox不支持datepicker，placeholder正常显示；&lt;br&gt;Chrome支持datepicker，显示年、月、日格式，忽略placeholder.&lt;/p&gt;
-&lt;h4 id=&quot;移动端&quot;&gt;&lt;a href=&quot;#移动端&quot; class=&quot;headerlink&quot; title=&quot;移动端&quot;&gt;&lt;/a&gt;移动端&lt;/h4&gt;&lt;p&gt;iPhone5 IOS7 有datephicker功能，但不显示placeholder.&lt;br&gt;Andorid4.04无datepicker功能，不显示placeholder。&lt;/p&gt;
-&lt;h4 id=&quot;解决方法：&quot;&gt;&lt;a href=&quot;#解决方法：&quot; class=&quot;headerlink&quot; title=&quot;解决方法：&quot;&gt;&lt;/a&gt;解决方法：&lt;/h4&gt;&lt;p&gt;先使其type为text，此时支持placeholder，当触摸或者聚焦的时候，使用JS切换使其触发datepicker功能。&lt;/p&gt;
-&lt;figure class=&quot;highlight html&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;input&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;type&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;text&quot;&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;placeholder&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;Date&quot;&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;onfocus&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;(this.type=&#39;date&#39;)&quot;&lt;/span&gt; &amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;h4 id=&quot;快速回弹滚动&quot;&gt;&lt;a href=&quot;#快速回弹滚动&quot; class=&quot;headerlink&quot; title=&quot;快速回弹滚动&quot;&gt;&lt;/a&gt;快速回弹滚动&lt;/h4&gt;&lt;p&gt;IOS让一个元素拥有像Native的滚动效果：&lt;/p&gt;
-&lt;figure class=&quot;highlight css&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;     &lt;span class=&quot;attribute&quot;&gt;overflow&lt;/span&gt;: auto; &lt;span class=&quot;comment&quot;&gt;/* auto | scroll */&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;     &lt;span class=&quot;attribute&quot;&gt;-webkit-overflow-scrolling&lt;/span&gt;: touch;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;Android考虑借助 iScrooll .&lt;br&gt;移动端取消touch高亮效果&lt;br&gt;a标签在触发点击时或者所有设置了伪类 :active 的元素，默认都会在激活状态，显示高亮，css禁止：&lt;/p&gt;
-&lt;figure class=&quot;highlight css&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;｛&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;     &lt;span class=&quot;selector-tag&quot;&gt;-webkit-tap-highlight-color&lt;/span&gt;: &lt;span class=&quot;selector-tag&quot;&gt;rgba&lt;/span&gt;(0,0,0,0);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;｝&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;*三星自带浏览器，点击A时，无法覆盖，还是会有阴影底色，只能换其他不使用A跳转。&lt;/p&gt;
-&lt;p&gt;禁止复制图像&lt;br&gt;通常长按图像img会弹出选项存储图像或拷贝图片，禁止方法：&lt;/p&gt;
-&lt;figure class=&quot;highlight css&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;selector-tag&quot;&gt;img&lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;     &lt;span class=&quot;attribute&quot;&gt;-webkit-touch-callout&lt;/span&gt;: none;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;1.掌握原生属性的特性；&lt;br&gt;2.很多属性极限突破可以使用缩放，倾斜这种手段来hack，比如最小字体，比如各种自已画的伪类图；&lt;br&gt;3.能css画的不要用图；&lt;br&gt;4.大小需要自适应的图标做成字体的不要画：iconfont；&lt;br&gt;5.能flex布局的不要用浮动，不要用绝对定位（不利于页面布局的扩展）&lt;/p&gt;
-&lt;p&gt;锁定 viewport&lt;/p&gt;
-&lt;figure class=&quot;highlight&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;ontouchmove=&quot;event.preventDefault()&quot; //锁定viewport，任何屏幕操作不移动用户界面（弹出键盘除外）。&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;模拟:hover伪类&lt;/p&gt;
-&lt;p&gt;因为iPhone并没有鼠标指针，所以没有hover事件。那么CSS :hover伪类就没用了。但是iPhone有Touch事件，onTouchStart 类似 onMouseOver，onTouchEnd 类似 onMouseOut。所以我们可以用它来模拟hover。使用Javascript：&lt;/p&gt;
-&lt;figure class=&quot;highlight javascript&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; myLinks = &lt;span class=&quot;built_in&quot;&gt;document&lt;/span&gt;.getElementsByTagName(&lt;span class=&quot;string&quot;&gt;&#39;a&#39;&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;for&lt;/span&gt;(&lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; i = &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;; i &amp;lt; myLinks.length; i++)&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  myLinks[i].addEventListener(’touchstart’, &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;function&lt;/span&gt;(&lt;span class=&quot;params&quot;&gt;&lt;/span&gt;)&lt;/span&gt;&amp;#123;&lt;span class=&quot;keyword&quot;&gt;this&lt;/span&gt;.className = “hover”;&amp;#125;, &lt;span class=&quot;literal&quot;&gt;false&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  myLinks[i].addEventListener(’touchend’, &lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;function&lt;/span&gt;(&lt;span class=&quot;params&quot;&gt;&lt;/span&gt;)&lt;/span&gt;&amp;#123;&lt;span class=&quot;keyword&quot;&gt;this&lt;/span&gt;.className = “”;&amp;#125;, &lt;span class=&quot;literal&quot;&gt;false&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;然后用CSS增加hover效果：&lt;/p&gt;
-&lt;figure class=&quot;highlight css&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;selector-tag&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;selector-pseudo&quot;&gt;:hover&lt;/span&gt;, &lt;span class=&quot;selector-tag&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;selector-class&quot;&gt;.hover&lt;/span&gt; &amp;#123; &lt;span class=&quot;comment&quot;&gt;/* 你的hover效果 */&lt;/span&gt; &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;这样设计一个链接，感觉可以更像按钮。并且，这个模拟可以用在任何元素上。&lt;/p&gt;
-&lt;p&gt;看看知乎大神的回答 &lt;a href=&quot;https://www.zhihu.com/question/20269059&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;移动开发的区别&lt;/a&gt;&lt;br&gt;&lt;img src=&quot;/images/6667e51ace0d1246f0b5f9b9cf5512b4_b.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;h3 id=&quot;meta写法：&quot;&gt;&lt;a href=&quot;#meta写法：&quot; class=&quot;headerlink&quot; title=&quot;meta写法：&quot;&gt;&lt;/a&gt;meta写法：&lt;/h3&gt;&lt;figure class=&quot;highlight html&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;meta&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;name&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;viewport&quot;&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;content&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;width=device-width, initial-scale=1, maximum-scale=1&quot;&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;width属性控制视口的宽度。可以像width=600这样设为确切的像素数，或者设为device-width这一特殊值来指代比例为100%时屏幕宽度的CSS像素数值。（相应有height及device-height属性，可能对包含基于视口高度调整大小及位置的元素的页面有用。）&lt;/p&gt;
-&lt;p&gt;initial-scale属性控制页面最初加载时的缩放等级。maximum-scale、minimum-scale及user-scalable属性控制允许用户以怎样的方式放大或缩小页面。&lt;/p&gt;
-&lt;figure class=&quot;highlight html&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;meta&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;name&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;apple-mobile-web-app-capable&quot;&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;content&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;yes&quot;&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;这个meta的作用是让普通移动网页被添加到主屏幕后，拥有一些类native的功能，很多同学应该都很熟悉了。就是类似隐藏ios的上下状态栏，实现全屏，禁止弹性拖拽，全屏，修改顶部颜色等。&lt;/p&gt;
     
     </summary>
     

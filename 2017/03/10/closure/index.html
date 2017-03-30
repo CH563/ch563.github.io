@@ -1,0 +1,36 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> 更好的理解闭包 · 陈立文</title><meta name="description" content="更好的理解闭包 - 陈立文"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="short icon" href="/favicon.png"><link rel="stylesheet" href="/css/apollo.css"><link rel="stylesheet" href="http://fonts.useso.com/css?family=Source+Sans+Pro:400,600" type="text/css"></head><body><div class="container-wrap"><div class="wrap"><header><a href="/" class="logo-link"><img src="/gallery.png"></a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">首页</a></li><li class="nav-list-item"><a href="/categories/exp/" target="_self" class="nav-list-link">经验文章</a></li><li class="nav-list-item"><a href="/categories/study/" target="_self" class="nav-list-link">每日一撸</a></li><li class="nav-list-item"><a href="/categories/diary/" target="_self" class="nav-list-link">随笔</a></li><li class="nav-list-item"><a href="/2016/06/16/website/" target="_self" class="nav-list-link">前端导航</a></li><li class="nav-list-item"><a href="/archives/" target="_self" class="nav-list-link">所有文章</a></li></ul></header><section class="container"><div class="post"><article class="post-block"><h1 class="post-title">更好的理解闭包</h1><div class="post-info">Mar 10, 2017</div><div class="post-content"><p>闭包是Javascript常说的一个话题，面试官都问的问题，很多高级应用都要依靠闭包实现。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">闭包是指那些能够访问独立(自由)变量的函数 (变量在本地使用，但定义在一个封闭的作用域中)。换句话说，这些函数可以“记忆”它被创建时候的环境。</span><br></pre></td></tr></table></figure>
+<p>要理解闭包，首先要弄懂Javascript的变量作用域。<br><a id="more"></a></p>
+<h3 id="变量的作用域"><a href="#变量的作用域" class="headerlink" title="变量的作用域"></a>变量的作用域</h3><p>这是一个至关重要的问题。变量的定义并不是以代码块作为域的，而是以函数作为作用域。也就是说，如果变量是在某个函数中定义的，那么它的函数以外的地方是不可见的。而如果变量是定义在if或者for这样的代码块中的，它的代码块之外是可见的。</p>
+<ul>
+<li><p>全局变量：指的是定义在全局代码中的变量。</p>
+</li>
+<li><p>局部变量：指的在函数里定义的变量。</p>
+</li>
+</ul>
+<p>其中，函数内的代码可以像访问自己的局部变量那样访问全局变量，反之则不行。</p>
+<p><strong> 如果我们声明一个变量时没有使用var语句，该变量就会黙认为全局变量 </strong></p>
+<p>尽量将全局变量的数量降到最低，以避免命名冲突。想想，如果两个人在同一段脚本的不同函数中使用了相同的全局变量名，就会发生令你捉狂的BUG，也难以找到。</p>
+<ul>
+<li><p>最好使用var来声时变量(ps:es6中，let比var更完美，实现块级作用域)。</p>
+</li>
+<li><p>最好可以在函数的第一行，定义变量，后期也轻松找到相关变量的定义。</p>
+</li>
+</ul>
+<p><strong> 变量提升 </strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">123</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    alert(a);</span><br><span class="line">    <span class="keyword">var</span> a = <span class="number">1</span>;</span><br><span class="line">    alert(a);</span><br><span class="line">&#125;</span><br><span class="line">f();</span><br></pre></td></tr></table></figure>
+<p>这里第一个alert()是undefined，这是因为函数域始终优先于全局域，所以局部变量a会覆盖所有与它同名的全局变量，尽管第一次调用时，a还没正式定义（值为undefined），但a已经存在于本地空间了。这就是<strong>提升</strong>。</p>
+<p><strong> 当Javascript执行过程进入新的函数时，这个函数内被声明的所有变量都会被提升到函数最开始的地方。</strong></p>
+<p>注意是，提升的只是变量，相关的赋值操作并不会被提升。</p>
+<p>未完，待续…</p>
+</div></article></div></section><footer><div class="paginator"><a href="/2017/03/07/digui/" class="next">NEXT</a></div><div data-thread-key="2017/03/10/closure/" data-title="更好的理解闭包" data-url="http://ch563.github.io/2017/03/10/closure/" data-author-key="1" class="ds-thread"></div><script>var duoshuoQuery = {short_name:"ch563"};
+(function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+     || document.getElementsByTagName('body')[0]).appendChild(ds);
+})();
+
+</script><div class="copyright"><p>© 2016 - 2017 <a href="http://ch563.github.io">陈立文</a>,<a href="https://hexo.io/" target="_blank">Hexo</a>Theme by<a href="https://github.com/pinggod/hexo-theme-apollo" target="_blank">apollo</a></p><p><a href="https://github.com/CH563" target="_blank"><img src="/img/github.png" class="github"></a><a href="http://codepen.io/ch563/" target="_blank"><img src="/img/codepen.png" class="github"></a><a href="/atom.xml" target="_blank"><img src="/img/rss.png" class="github rss"></a></p></div></footer></div></div><script async src="//cdn.bootcss.com/mathjax/2.6.1/MathJax.js?config=TeX-MML-AM_CHTML"></script><div style="display:none;"><script src="https://s4.cnzz.com/z_stat.php?id=1261623744&amp;web_id=1261623744" language="JavaScript"></script></div></body></html>
