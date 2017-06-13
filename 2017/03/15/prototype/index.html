@@ -1,0 +1,50 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> 原型与原型链 · 陈立文</title><meta name="description" content="原型与原型链 - 陈立文"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="short icon" href="/favicon.png"><link rel="stylesheet" href="/css/apollo.css"></head><body><div class="container-wrap"><div class="wrap"><header><a href="/" class="logo-link"><img src="/gallery.png"></a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">首页</a></li><li class="nav-list-item"><a href="/categories/exp/" target="_self" class="nav-list-link">经验文章</a></li><li class="nav-list-item"><a href="/categories/study/" target="_self" class="nav-list-link">每日一撸</a></li><li class="nav-list-item"><a href="/categories/diary/" target="_self" class="nav-list-link">随笔</a></li><li class="nav-list-item"><a href="/2016/06/16/website/" target="_self" class="nav-list-link">前端导航</a></li><li class="nav-list-item"><a href="/archives/" target="_self" class="nav-list-link">所有文章</a></li></ul></header><section class="container"><div class="post"><article class="post-block"><h1 class="post-title">原型与原型链</h1><div class="post-info">Mar 15, 2017</div><div class="post-content"><p> JavaScript 中，万物皆对象！但对象也是有区别的。分为普通对象和函数对象，Object ，Function 是JS自带的函数对象。</p>
+<p> 怎么区分？其实很简单，凡是通过 new Function() 创建的对象都是函数对象，其他的都是普通对象。Function Object 也都是通过 New Function()创建的。</p>
+<a id="more"></a>
+<h3 id="构造函数"><a href="#构造函数" class="headerlink" title="构造函数"></a>构造函数</h3><p>构造函数可用来创建特定类型的对象。像Object和Array这样的原生构造函数，在运行时会自动出现在执行环境中。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> person = <span class="keyword">new</span> Person();</span><br><span class="line">person.name = <span class="string">'Kevin'</span>;</span><br><span class="line"><span class="built_in">console</span>.log(person.name) <span class="comment">// Kevin</span></span><br></pre></td></tr></table></figure>
+<p>按照国际惯例，构造函数始终都应该以一个大写字母开头，而非构造函数则应该以一个小写字母开头。</p>
+<p>要创建Person的新实例，必须使用new操作符。一般是经历以下四个步骤：</p>
+<ul>
+<li>1、创建一个新对象；</li>
+<li>2、将构造函数的作用域赋给新对象（此this的指向了这个新对象）</li>
+<li>3、为这新对象添加构造函数的属性</li>
+<li>4、返回新对象</li>
+</ul>
+<p>上面例子中，person 就用有一个constructor （构造函数）属性，该属性是指向Person。</p>
+<h3 id="原型对象"><a href="#原型对象" class="headerlink" title="原型对象"></a>原型对象</h3><p>无论什么时候，只要创建一个新函数，就会根据一组特定的规则为该函数创建一个prototype属性，这个属性指向函数的原型对象。普通对象没有 prototype，但有 <code>__proto__</code> 属性。</p>
+<p>如上面例子，Person.prototype 指向了原型象，而 Person.prototype.constructor 又指回了Person。</p>
+<p>而 person 只是一个对象实例。</p>
+<p>而person可以访问保存在原型中的值，但却不能重写原型中的值。如果我们在 person 中添加一个属性，而该属性与实例原型中的一个属性同名，那个person中的属性会暂时屏蔽原型中的属性，删除后，还是读回原型中的属性</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">Person.prototype.name = <span class="string">'Perty'</span>;</span><br><span class="line"><span class="keyword">var</span> person = <span class="keyword">new</span> Person();</span><br><span class="line">person.name = <span class="string">'Kevin'</span>;</span><br><span class="line"><span class="built_in">console</span>.log(person.name) <span class="comment">// Kevin</span></span><br><span class="line"><span class="keyword">delete</span> person.name</span><br><span class="line"><span class="built_in">console</span>.log(person.name) <span class="comment">// Perty</span></span><br></pre></td></tr></table></figure>
+<p>解析器的操作是：</p>
+<ul>
+<li>“实例person有name属性吗？”</li>
+<li>“有” —— 于是就读取实例中的name属性，输出 Kevin</li>
+</ul>
+<p>删除后，再运行时：</p>
+<ul>
+<li>“实例person有name属性吗？”</li>
+<li>“没有”</li>
+<li>“person的原型有name属性吗？”</li>
+<li>“有” —— 于是就讯取原型中的name的属性，输出 Perty</li>
+</ul>
+<h3 id="原型链"><a href="#原型链" class="headerlink" title="原型链"></a>原型链</h3><p>在创建对象（不论是普通对象还是函数对象）的时候，都有一个叫做 <code>__proto__</code> 的内置属性，用于指向创建它的函数对象的原型对象 prototype。以上面的例子为例：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(person.__proto__ === Person.prototype)  <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+<p>同样的，Person.prototype 也同样有 <strong>proto</strong> 属性，它指向创建它的函数对象（Object）的prototype</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(Person.prototype === <span class="built_in">Object</span>.prototype) <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+<p>继续，Object.prototype对象也有<strong>proto</strong>属性，但它比较特殊，为null</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.prototype.__proto__) <span class="comment">// null</span></span><br></pre></td></tr></table></figure>
+<p>我们把这个有 <code>__proto__</code> 串起来的直到 <code>Object.prototype.__proto__</code> 为null的链叫做原型链。</p>
+<p><code>person.__proto__  ==&gt;  Person.prototype.__proto__  ==&gt;  Object.prototype.__proto__  ==&gt;  null</code></p>
+</div></article></div></section><footer><div class="paginator"><a href="/2017/03/10/closure/" class="next">NEXT</a></div><div data-thread-key="2017/03/15/prototype/" data-title="原型与原型链" data-url="http://ch563.github.io/2017/03/15/prototype/" data-author-key="1" class="ds-thread"></div><script>var duoshuoQuery = {short_name:"ch563"};
+(function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+     || document.getElementsByTagName('body')[0]).appendChild(ds);
+})();
+
+</script><div class="copyright"><p>© 2016 - 2017 <a href="http://ch563.github.io">陈立文</a>,<a href="https://hexo.io/" target="_blank">Hexo</a>Theme by<a href="https://github.com/pinggod/hexo-theme-apollo" target="_blank">apollo</a></p><p><a href="https://github.com/CH563" target="_blank"><img src="/img/github.png" class="github"></a><a href="http://codepen.io/ch563/" target="_blank"><img src="/img/codepen.png" class="github"></a><a href="/atom.xml" target="_blank"><img src="/img/rss.png" class="github rss"></a></p></div></footer></div></div><script async src="//cdn.bootcss.com/mathjax/2.6.1/MathJax.js?config=TeX-MML-AM_CHTML"></script><div style="display:none;"><script src="https://s4.cnzz.com/z_stat.php?id=1261623744&amp;web_id=1261623744" language="JavaScript"></script></div></body></html>

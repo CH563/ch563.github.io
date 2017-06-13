@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://ch563.github.io/"/>
-  <updated>2017-04-27T14:24:57.168Z</updated>
+  <updated>2017-05-29T13:52:48.963Z</updated>
   <id>http://ch563.github.io/</id>
   
   <author>
@@ -16,11 +16,71 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>原型与原型链</title>
+    <link href="http://ch563.github.io/2017/03/15/prototype/"/>
+    <id>http://ch563.github.io/2017/03/15/prototype/</id>
+    <published>2017-03-15T06:22:31.000Z</published>
+    <updated>2017-05-29T13:52:48.963Z</updated>
+    
+    <content type="html">&lt;p&gt; JavaScript 中，万物皆对象！但对象也是有区别的。分为普通对象和函数对象，Object ，Function 是JS自带的函数对象。&lt;/p&gt;
+&lt;p&gt; 怎么区分？其实很简单，凡是通过 new Function() 创建的对象都是函数对象，其他的都是普通对象。Function Object 也都是通过 New Function()创建的。&lt;/p&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;h3 id=&quot;构造函数&quot;&gt;&lt;a href=&quot;#构造函数&quot; class=&quot;headerlink&quot; title=&quot;构造函数&quot;&gt;&lt;/a&gt;构造函数&lt;/h3&gt;&lt;p&gt;构造函数可用来创建特定类型的对象。像Object和Array这样的原生构造函数，在运行时会自动出现在执行环境中。&lt;/p&gt;
+&lt;figure class=&quot;highlight javascript&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;Person&lt;/span&gt;(&lt;span class=&quot;params&quot;&gt;&lt;/span&gt;) &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; person = &lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; Person();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;person.name = &lt;span class=&quot;string&quot;&gt;&#39;Kevin&#39;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;console&lt;/span&gt;.log(person.name) &lt;span class=&quot;comment&quot;&gt;// Kevin&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;按照国际惯例，构造函数始终都应该以一个大写字母开头，而非构造函数则应该以一个小写字母开头。&lt;/p&gt;
+&lt;p&gt;要创建Person的新实例，必须使用new操作符。一般是经历以下四个步骤：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;1、创建一个新对象；&lt;/li&gt;
+&lt;li&gt;2、将构造函数的作用域赋给新对象（此this的指向了这个新对象）&lt;/li&gt;
+&lt;li&gt;3、为这新对象添加构造函数的属性&lt;/li&gt;
+&lt;li&gt;4、返回新对象&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;上面例子中，person 就用有一个constructor （构造函数）属性，该属性是指向Person。&lt;/p&gt;
+&lt;h3 id=&quot;原型对象&quot;&gt;&lt;a href=&quot;#原型对象&quot; class=&quot;headerlink&quot; title=&quot;原型对象&quot;&gt;&lt;/a&gt;原型对象&lt;/h3&gt;&lt;p&gt;无论什么时候，只要创建一个新函数，就会根据一组特定的规则为该函数创建一个prototype属性，这个属性指向函数的原型对象。普通对象没有 prototype，但有 &lt;code&gt;__proto__&lt;/code&gt; 属性。&lt;/p&gt;
+&lt;p&gt;如上面例子，Person.prototype 指向了原型象，而 Person.prototype.constructor 又指回了Person。&lt;/p&gt;
+&lt;p&gt;而 person 只是一个对象实例。&lt;/p&gt;
+&lt;p&gt;而person可以访问保存在原型中的值，但却不能重写原型中的值。如果我们在 person 中添加一个属性，而该属性与实例原型中的一个属性同名，那个person中的属性会暂时屏蔽原型中的属性，删除后，还是读回原型中的属性&lt;/p&gt;
+&lt;figure class=&quot;highlight javascript&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;function&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;Person&lt;/span&gt;(&lt;span class=&quot;params&quot;&gt;&lt;/span&gt;) &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;Person.prototype.name = &lt;span class=&quot;string&quot;&gt;&#39;Perty&#39;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; person = &lt;span class=&quot;keyword&quot;&gt;new&lt;/span&gt; Person();&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;person.name = &lt;span class=&quot;string&quot;&gt;&#39;Kevin&#39;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;console&lt;/span&gt;.log(person.name) &lt;span class=&quot;comment&quot;&gt;// Kevin&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;delete&lt;/span&gt; person.name&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;console&lt;/span&gt;.log(person.name) &lt;span class=&quot;comment&quot;&gt;// Perty&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;解析器的操作是：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;“实例person有name属性吗？”&lt;/li&gt;
+&lt;li&gt;“有” —— 于是就读取实例中的name属性，输出 Kevin&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;删除后，再运行时：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;“实例person有name属性吗？”&lt;/li&gt;
+&lt;li&gt;“没有”&lt;/li&gt;
+&lt;li&gt;“person的原型有name属性吗？”&lt;/li&gt;
+&lt;li&gt;“有” —— 于是就讯取原型中的name的属性，输出 Perty&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;原型链&quot;&gt;&lt;a href=&quot;#原型链&quot; class=&quot;headerlink&quot; title=&quot;原型链&quot;&gt;&lt;/a&gt;原型链&lt;/h3&gt;&lt;p&gt;在创建对象（不论是普通对象还是函数对象）的时候，都有一个叫做 &lt;code&gt;__proto__&lt;/code&gt; 的内置属性，用于指向创建它的函数对象的原型对象 prototype。以上面的例子为例：&lt;/p&gt;
+&lt;figure class=&quot;highlight javascript&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;console&lt;/span&gt;.log(person.__proto__ === Person.prototype)  &lt;span class=&quot;comment&quot;&gt;// true&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;同样的，Person.prototype 也同样有 &lt;strong&gt;proto&lt;/strong&gt; 属性，它指向创建它的函数对象（Object）的prototype&lt;/p&gt;
+&lt;figure class=&quot;highlight javascript&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;console&lt;/span&gt;.log(Person.prototype === &lt;span class=&quot;built_in&quot;&gt;Object&lt;/span&gt;.prototype) &lt;span class=&quot;comment&quot;&gt;// true&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;继续，Object.prototype对象也有&lt;strong&gt;proto&lt;/strong&gt;属性，但它比较特殊，为null&lt;/p&gt;
+&lt;figure class=&quot;highlight javascript&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;built_in&quot;&gt;console&lt;/span&gt;.log(&lt;span class=&quot;built_in&quot;&gt;Object&lt;/span&gt;.prototype.__proto__) &lt;span class=&quot;comment&quot;&gt;// null&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;我们把这个有 &lt;code&gt;__proto__&lt;/code&gt; 串起来的直到 &lt;code&gt;Object.prototype.__proto__&lt;/code&gt; 为null的链叫做原型链。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;person.__proto__  ==&amp;gt;  Person.prototype.__proto__  ==&amp;gt;  Object.prototype.__proto__  ==&amp;gt;  null&lt;/code&gt;&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt; JavaScript 中，万物皆对象！但对象也是有区别的。分为普通对象和函数对象，Object ，Function 是JS自带的函数对象。&lt;/p&gt;
+&lt;p&gt; 怎么区分？其实很简单，凡是通过 new Function() 创建的对象都是函数对象，其他的都是普通对象。Function Object 也都是通过 New Function()创建的。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="exp" scheme="http://ch563.github.io/categories/exp/"/>
+    
+    
+  </entry>
+  
+  <entry>
     <title>更好的理解闭包</title>
     <link href="http://ch563.github.io/2017/03/10/closure/"/>
     <id>http://ch563.github.io/2017/03/10/closure/</id>
     <published>2017-03-10T13:41:31.000Z</published>
-    <updated>2017-04-27T14:24:57.168Z</updated>
+    <updated>2017-04-27T14:33:26.000Z</updated>
     
     <content type="html">&lt;p&gt;闭包是Javascript常说的一个话题，面试官都问的问题，很多高级应用都要依靠闭包实现。&lt;/p&gt;
 &lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;闭包是指那些能够访问独立(自由)变量的函数 (变量在本地使用，但定义在一个封闭的作用域中)。换句话说，这些函数可以“记忆”它被创建时候的环境。&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
@@ -1001,62 +1061,6 @@
     </summary>
     
       <category term="diary" scheme="http://ch563.github.io/categories/diary/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>git常用命令</title>
-    <link href="http://ch563.github.io/2016/06/15/git/"/>
-    <id>http://ch563.github.io/2016/06/15/git/</id>
-    <published>2016-06-15T09:01:02.000Z</published>
-    <updated>2017-02-17T09:46:42.992Z</updated>
-    
-    <content type="html">&lt;p&gt;新建文件夹,创建版本     &lt;code&gt;$mkdir &amp;lt;name&amp;gt;&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;查看目录     &lt;code&gt;$pwd&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;目录变仓库     &lt;code&gt;$git init&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;添加文件     &lt;code&gt;$git add &amp;lt;file&amp;gt;&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;提交     &lt;code&gt;$git commit&lt;/code&gt;   例: $git commit -m “说明”&lt;/p&gt;
-&lt;p&gt;仓库状态     &lt;code&gt;$git status&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;查看变化     &lt;code&gt;$git diff &amp;lt;file&amp;gt;&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;查看历史     &lt;code&gt;$git log&lt;/code&gt;   //简洁查看   –pretty=oneline&lt;/p&gt;
-&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;p&gt;回顾版本     &lt;code&gt;$git reset --hard HEAD^&lt;/code&gt; //上一个：HEAD^;上上一个：HEAD^^等等….&lt;/p&gt;
-&lt;p&gt;回顾后又拿回新版     &lt;code&gt;$git reset --hard &amp;lt;序列号&amp;gt;&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;查看文件     &lt;code&gt;$cat &amp;lt;file&amp;gt;&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;查看操作过的命令     &lt;code&gt;$git reflog&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;对比文件     &lt;code&gt;$git diff HEAD --&amp;lt;file&amp;gt;&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;撤销修改     &lt;code&gt;$git checkout --&amp;lt;file&amp;gt;&lt;/code&gt;  // 其实是用版本库里的版本替换工作区的版本，无论工作区是修改还是删除，都可以“一键还原”&lt;/p&gt;
-&lt;p&gt;回退暂存区修改     &lt;code&gt;$git reset HEAD &amp;lt;file&amp;gt;&lt;/code&gt;   //HEAD是指回到最新的那版&lt;/p&gt;
-&lt;p&gt;删除文件     &lt;code&gt;$git rm &amp;lt;file&amp;gt;&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;添加ssh key     &lt;code&gt;$ssh-keygen -t rsa -c &amp;quot;&amp;lt;mail&amp;gt;&amp;quot;&lt;/code&gt;  //在主目录打到&amp;lt;.ssh&amp;gt;目录，id_rsa是私钥，id_rsa.pub是公钥,复制里面内容到 GitHub里的 SSH&lt;/p&gt;
-&lt;p&gt;添加远程库     &lt;code&gt;$git remote add origin git@github.com:&amp;lt;name&amp;gt;/&amp;lt;repository&amp;gt;.git&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;推送远程库     &lt;code&gt;$git push -u origin master&lt;/code&gt;  //远程为空时才用 -u |  master是主分支&lt;/p&gt;
-&lt;p&gt;克隆远程库     &lt;code&gt;$git clone git@github.com:&amp;lt;name&amp;gt;/&amp;lt;repository&amp;gt;.git&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;从远程更新     &lt;code&gt;$git fetch git@github.com:&amp;lt;name&amp;gt;/&amp;lt;repository&amp;gt;.git&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;查看分支     &lt;code&gt;$git branch&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;创建分支     &lt;code&gt;$git branch &amp;lt;name&amp;gt;&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;切换分支     &lt;code&gt;$git checkout &amp;lt;name&amp;gt;&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;创建+切换分支     &lt;code&gt;$git checkout -b &amp;lt;name&amp;gt;&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;合并分支到当前     &lt;code&gt;$git merge &amp;lt;name&amp;gt;&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;删除分支     &lt;code&gt;$git branch -d &amp;lt;name&amp;gt;&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;查看分支合图     &lt;code&gt;$git log --graph&lt;/code&gt;&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;新建文件夹,创建版本     &lt;code&gt;$mkdir &amp;lt;name&amp;gt;&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;查看目录     &lt;code&gt;$pwd&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;目录变仓库     &lt;code&gt;$git init&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;添加文件     &lt;code&gt;$git add &amp;lt;file&amp;gt;&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;提交     &lt;code&gt;$git commit&lt;/code&gt;   例: $git commit -m “说明”&lt;/p&gt;
-&lt;p&gt;仓库状态     &lt;code&gt;$git status&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;查看变化     &lt;code&gt;$git diff &amp;lt;file&amp;gt;&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;查看历史     &lt;code&gt;$git log&lt;/code&gt;   //简洁查看   –pretty=oneline&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="exp" scheme="http://ch563.github.io/categories/exp/"/>
     
     
   </entry>
